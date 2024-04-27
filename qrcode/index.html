@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Cards</title>
+    <!-- <link rel="stylesheet" href="seu.css" /> -->
+    <style>
+      /* Reset de estilos */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Estilo para a folha A4 */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .a4 {
+        width: 210mm;
+        height: 297mm;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 30px; /* Adiciona padding externo */
+      }
+
+      /* Estilo para os cartões */
+      .card {
+        width: 90mm;
+        height: 50mm;
+        padding: 10px; /* Reduz o padding para se adequar ao novo tamanho */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        border: 1px solid #999898;
+        border-radius: 10px;
+      }
+
+      /* Estilo para a imagem do QR Code */
+      .qr-code {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      /* Estilo para o nome, código e texto */
+      .info {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      /* Estilo para o código */
+      .code {
+        font-weight: bold;
+      }
+
+      /* Estilo responsivo */
+      @media (max-width: 767px) {
+        .card {
+          width: 100%;
+          margin-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="a4">
+      <!-- Cartão 1 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 1"
+        />
+        <div class="info">
+          <div class="code">12345678901</div>
+          <div class="name">João Pessoa</div>
+          <div class="text">Setor 1 - Maravilha</div>
+        </div>
+      </div>
+
+      <!-- Cartão 2 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 2"
+        />
+        <div class="info">
+          <div class="code">98765432109</div>
+          <div class="name">Joana Pessoa</div>
+          <div class="text">Setor 1 - Liberdade</div>
+        </div>
+      </div>
+
+      <!-- Cartão 1 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 1"
+        />
+        <div class="info">
+          <div class="code">12345678901</div>
+          <div class="name">João Pessoa</div>
+          <div class="text">Setor 1 - Maravilha</div>
+        </div>
+      </div>
+
+      <!-- Cartão 2 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 2"
+        />
+        <div class="info">
+          <div class="code">98765432109</div>
+          <div class="name">Joana Pessoa</div>
+          <div class="text">Setor 1 - Liberdade</div>
+        </div>
+      </div>
+
+      <!-- Cartão 1 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 1"
+        />
+        <div class="info">
+          <div class="code">12345678901</div>
+          <div class="name">João Pessoa</div>
+          <div class="text">Setor 1 - Maravilha</div>
+        </div>
+      </div>
+
+      <!-- Cartão 2 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 2"
+        />
+        <div class="info">
+          <div class="code">98765432109</div>
+          <div class="name">Joana Pessoa</div>
+          <div class="text">Setor 1 - Liberdade</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 1"
+        />
+        <div class="info">
+          <div class="code">12345678901</div>
+          <div class="name">João Pessoa</div>
+          <div class="text">Setor 1 - Maravilha</div>
+        </div>
+      </div>
+
+      <!-- Cartão 2 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 2"
+        />
+        <div class="info">
+          <div class="code">98765432109</div>
+          <div class="name">Joana Pessoa</div>
+          <div class="text">Setor 1 - Liberdade</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 1"
+        />
+        <div class="info">
+          <div class="code">12345678901</div>
+          <div class="name">João Pessoa</div>
+          <div class="text">Setor 1 - Maravilha</div>
+        </div>
+      </div>
+
+      <!-- Cartão 2 -->
+      <div class="card">
+        <img
+          class="qr-code"
+          src="qrcode.jpeg"
+          width="79"
+          height="78"
+          alt="QR Code 2"
+        />
+        <div class="info">
+          <div class="code">98765432109</div>
+          <div class="name">Joana Pessoa</div>
+          <div class="text">Setor 1 - Liberdade</div>
+        </div>
+      </div>
+
+      <!-- Adicione mais cartões conforme necessário -->
+    </div>
+  </body>
+</html>

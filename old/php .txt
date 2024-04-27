@@ -1,0 +1,9 @@
+ <?php 
+        echo'<form action="form.php" method="post">';
+        echo"voce tem acesso ao site <br>";
+        echo'nome: <input type="text" name="nome" id="nome"> <br>';
+        echo'genero: <input type="text" name="genero" id="genero"> <br>';
+        echo'idade: <input type="text" name="idade" id="idade"> <br>';
+        echo'<button type="submit">butao</button>'; 
+        echo'</form>';
+?>
