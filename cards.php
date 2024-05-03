@@ -31,47 +31,42 @@ include('./config/connect.php');
                                 <?php
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                    $name = $_POST["name"];
-                                    $sex = $_POST["sex"];
-                                    $role = $_POST["role"];
-                                    $city = $_POST["city"];
-                                    $sector = $_POST["sector"];
-                                    $church = $_POST["church"];
-                                    if (empty($name)) {
+                                    $card = $_POST["card"];
+                                    if (empty($card)) {
                                         echo "é obrigatório o campo <br>";
-                                        echo "nome=$name";
-                                        return '';
-                                    }
-                                    if (empty($sex)) {
-                                        echo "é obrigatório o campo <br>";
-                                        echo "sex=$sex";
-                                        return '';
-                                    }
-                                    if (empty($role)) {
-                                        echo "é obrigatório o campo <br>";
-                                        echo "role=$role";
-                                        return '';
-                                    }
-                                    if (empty($city)) {
-                                        echo "é obrigatório o campo <br>";
-                                        echo "city=$city";
-                                        return '';
-                                    }
-                                    if (empty($sector)) {
-                                        echo "é obrigatório o campo <br>";
-                                        echo "sector=$sector";
-                                        return '';
-                                    }
-                                    if (empty($church)) {
-                                        echo "é obrigatório o campo <br>";
-                                        echo " church=$church";
+                                        echo "card=$card";
                                         return '';
                                     }
 
-                                    $card = rand(00000000, 99999999);
+                                    $id_user = "SELECT id FROM siblings WHERE card=$card";
+                                    $result = $conn->query($id_user);
+                                    if ($result->num_rows < 1) {
+                                        echo "Carteira não encontrada.";
+                                        echo '<script>
+                                            setTimeout(function() {
+                                                window.location.href = "index.php";
+                                            }, 1500); 
+                                            </script>';
+                                        return '';
+                                    }
+                                    $row = $result->fetch_assoc();
 
-                                    $sql = "INSERT INTO siblings (name, sex, card, role, city, sector, church) 
-                                        VALUES ('$name', '$sex', '$card', '$role', '$city', '$sector', '$church')";
+                                    $data_atual = date('Y-m-d');
+                                    $sql_date = "SELECT id FROM cards WHERE DATE(data_hora) = '$data_atual' and card='$card'";
+                                    $validation = $conn->query($sql_date);
+                                    if ($validation->num_rows > 0) {
+                                        echo "Irmão incluso.";
+                                        echo '<script>
+                                                setTimeout(function() {
+                                                    window.location.href = "index.php";
+                                                }, 1500); 
+                                                </script>';
+                                        return '';
+                                    }
+
+                                    $sql = "INSERT INTO cards (card, id_user) 
+                                    VALUES ('$card','$row[id]')";
+
 
                                     if ($conn->query($sql)) {
                                         echo "Registro realizado com Sucesso<br>";
