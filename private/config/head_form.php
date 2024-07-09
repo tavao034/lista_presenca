@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['username'])){
+    header("Location:../index.html");
+    exit();
+  }
+?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -247,6 +254,7 @@
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Home</h1>
+          <h4 class="h2">Seja bem vindo <?php echo $_SESSION['username']; ?></h4>
         </div>
 
         <?php } ?>
