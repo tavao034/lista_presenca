@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     session_start();
     $_SESSION['username'] = $username;
     echo $sql;
-    header("Location: ./private/index.php");
+    header("Location: ./private");
     exit();
   } else {
     echo 'Usuário ou senha inválido.';
