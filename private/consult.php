@@ -33,7 +33,7 @@
               </td>";
 
         echo "<td>";
-        echo "<a href= 'http://localhost/projeto/edit.php?id=" . $row['id'] . "'>Editar</a> | ";
+        echo "<a href= 'http://localhost/projeto/private/edit.php?id=" . $row['id'] . "'>Editar</a> | ";
         echo "<a href='delete.php?id=" . $row['id'] . "' onclick='return confirm(\"Tem certeza que deseja excluir este registro?\")'>Excluir</a>";
         echo "</td>";
         echo "</tr>";

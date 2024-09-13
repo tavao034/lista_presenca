@@ -38,24 +38,10 @@ include('./config/connect.php');
                                         return '';
                                     }
 
-                                    $id_user = "SELECT id FROM siblings WHERE card=$card";
+                                    $id_user = "SELECT * FROM siblings WHERE card=$card";
                                     $result = $conn->query($id_user);
                                     if ($result->num_rows < 1) {
                                         echo "Carteira não encontrada.";
-                                        echo '<script>
-                                            setTimeout(function() {
-                                                window.location.href = "index.php";
-                                            }, 1500); 
-                                            </script>';
-                                        return '';
-                                    }
-                                    $row = $result->fetch_assoc();
-
-                                    $data_atual = date('Y-m-d');
-                                    $sql_date = "SELECT id FROM cards WHERE DATE(data_hora) = '$data_atual' and card='$card'";
-                                    $validation = $conn->query($sql_date);
-                                    if ($validation->num_rows > 0) {
-                                        echo "Irmão incluso.";
                                         echo '<script>
                                                 setTimeout(function() {
                                                     window.location.href = "index.php";
@@ -64,25 +50,55 @@ include('./config/connect.php');
                                         return '';
                                     }
 
-                                    $sql = "INSERT INTO cards (card, id_user) 
-                                    VALUES ('$card','$row[id]')";
-
-
-                                    if ($conn->query($sql)) {
-                                        echo "Registro realizado com Sucesso<br>";
-                                    } else {
-                                        echo "" . $conn->error;
+                                    $present = "SELECT * FROM presents WHERE card=$card and DATE(date_time) = CURDATE()";
+                                    $result_present = $conn->query($present);
+                                    if ($result_present->num_rows > 0) {
+                                        echo "Presença já registrada";
+                                        echo '<script>
+                                                setTimeout(function() {
+                                                    window.location.href = "index.php";
+                                                }, 1500); 
+                                                </script>';
+                                        return '';
                                     }
 
-                                    $conn->close();
+                                    while ($row = $result->fetch_assoc()) {
+                                        $card = htmlspecialchars($row["card"]);
+                                        $qr_url = "https://api.qrserver.com/v1/create-qr-code/?data=" . $row["card"];
+                                ?>
 
-                                    echo '<script>
-                                            setTimeout(function() {
-                                                window.location.href = "index.php";
-                                            }, 1500); 
-                                            </script>';
+                                        <div class="card">
+                                            <b class="title">Congregação Cristã no Brasil </b>
+                                            <img class="qr-code" src=<?php echo "$qr_url"; ?> width="76" height="76" alt="QR Code 1" />
+                                            <div class="info">
+                                                <div class="code"><?php echo $row["name"] ?></div>
+                                                <div class="name"><?php echo $row["card"] ?></div>
+                                                <div class="text"><?php echo $row["role"] ?></div>
+                                                <div class="text"><?php echo $row["sector"] . "/" . $row["church"] ?></div>
+                                                <div class="text"><?php echo $row["city"] ?></div>
+                                            </div>
+                                        </div>
+
+                                <?php
+
+                                        $sql = "INSERT INTO presents (name, card, role, sector, church, city) 
+                                        VALUES ('$row[name]', '$row[card]' ,'$row[role]', '$row[sector]', '$row[church]', '$row[city]')";
+
+                                        if ($conn->query($sql)) {
+                                            echo "Presença confirmada<br>";
+                                            echo '<script>
+                                                setTimeout(function() {
+                                                    window.location.href = "index.php";
+                                                }, 2000); 
+                                                </script>';
+                                        return '';
+                                        } else {
+                                            echo "" . $conn->error;
+                                        }
+                                    }
                                 } else {
 
+                                    $conn->close();
                                     echo "voce nao enviou essa requisicao via post";
                                 }
 
